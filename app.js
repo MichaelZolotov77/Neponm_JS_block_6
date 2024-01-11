@@ -26,3 +26,10 @@ a.setAttribute("target", "_blank"); // установка нового атри�
 console.log(a);
 console.log(a.href); // выдает полный адрес ссылки
 console.log(a.className); // возвращает название класса
+
+a.style.color = "orange"; // ссылка стала оранжевой
+a.style.display = "none"; // ссылка пропала
+a.style.display = "inline"; // ссылка появилась
+
+console.log(a.getAttribute("data-id")); // 1
+console.log(a.dataset.id); // получение data-атрибута через dataset
