@@ -1,12 +1,9 @@
-const list1 = document.querySelectorAll("li");
-console.log(list1); // NodeList(17)
+const el = document.querySelector(".place.top.container");
+console.log(el.className); // place top container
+console.log(el.classList); // DOMTokenList(3)
 
-list1.forEach((el) => (el.className = "li")); //добавим для всех li класс
-list1.forEach((el) => (el.style.display = "none")); //все элементы скрылись
-list1.forEach((el) => (el.style.display = "block")); //все элементы появились
-
-const list2 = document.getElementsByTagName("li");
-console.log(list2); // HTMLCollection(17)
-for (let el of list2) {
-  el.style.textTransform = "uppercase";
-}
+el.classList.add("active"); // DOMTokenList(4) - добавить новый класс
+el.classList.remove("active"); // DOMTokenList(3) - удалить класс
+console.log(el.classList.contains("top")); // true - проверить есть ли класс
+el.classList.toggle("active"); // добавляет класс если нет, удаляет если есть
+console.log(el.classList.toggle("active")); // возвращает true при добавлении, false при удалении
