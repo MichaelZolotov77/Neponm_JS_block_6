@@ -1,12 +1,14 @@
-const anchor = document.querySelector(".place.top.container");
-console.log(anchor);
+const title = document.querySelector(".a_cat");
+console.log(title);
 
-console.dir(anchor.parentElement); // получаем родительский элемент
-console.log(anchor.childElementCount); // сколько дочерних элементов
-console.log(anchor.children); // HTMLCollection(3)
-console.log(anchor.firstElementChild); // первый ребенок
-console.log(anchor.lastElementChild); // последний ребенок
+function fn1() {
+  console.log("hover!");
+}
 
-const p = document.querySelector(".fallback-cop");
-console.log(p.nextElementSibling); // следующий сосед
-console.log(p.previousElementSibling); // предыдущий сосед
+function fn2() {
+  console.log("event!");
+}
+
+title.onmouseenter = fn1; // событие наведения мыши - hover, с приставкой on
+
+title.addEventListener("click", fn2); // при клике отрабатывает событие
