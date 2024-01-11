@@ -1,9 +1,12 @@
-const el = document.querySelector(".place.top.container");
-console.log(el.className); // place top container
-console.log(el.classList); // DOMTokenList(3)
+const anchor = document.querySelector(".place.top.container");
+console.log(anchor);
 
-el.classList.add("active"); // DOMTokenList(4) - добавить новый класс
-el.classList.remove("active"); // DOMTokenList(3) - удалить класс
-console.log(el.classList.contains("top")); // true - проверить есть ли класс
-el.classList.toggle("active"); // добавляет класс если нет, удаляет если есть
-console.log(el.classList.toggle("active")); // возвращает true при добавлении, false при удалении
+console.dir(anchor.parentElement); // получаем родительский элемент
+console.log(anchor.childElementCount); // сколько дочерних элементов
+console.log(anchor.children); // HTMLCollection(3)
+console.log(anchor.firstElementChild); // первый ребенок
+console.log(anchor.lastElementChild); // последний ребенок
+
+const p = document.querySelector(".fallback-cop");
+console.log(p.nextElementSibling); // следующий сосед
+console.log(p.previousElementSibling); // предыдущий сосед
