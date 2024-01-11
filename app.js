@@ -1,35 +1,12 @@
-const title = document.querySelector("h1");
-console.log(title);
+const list1 = document.querySelectorAll("li");
+console.log(list1); // NodeList(17)
 
-const btn = document.querySelector("#btn");
-console.log(btn);
+list1.forEach((el) => (el.className = "li")); //добавим для всех li класс
+list1.forEach((el) => (el.style.display = "none")); //все элементы скрылись
+list1.forEach((el) => (el.style.display = "block")); //все элементы появились
 
-const subtitle = document.querySelector(".gray.title");
-console.log(subtitle);
-
-const sections = document.querySelectorAll("section");
-console.log(sections);
-
-const anchor = document.querySelector(".a_api");
-console.log(anchor);
-console.log(anchor.innerText);
-anchor.innerText = "REST API";
-
-// const p = document.querySelector(".p_api");
-// console.log(p.innerText); // только текст
-// console.log(p.innerHTML); // вместе с html
-// p.innerHTML = "Hello <b> World</b>";
-
-const a = document.querySelector(".a_dom");
-console.log(a.getAttribute("href")); // получение атрибута href
-a.setAttribute("target", "_blank"); // установка нового атрибута target
-console.log(a);
-console.log(a.href); // выдает полный адрес ссылки
-console.log(a.className); // возвращает название класса
-
-a.style.color = "orange"; // ссылка стала оранжевой
-a.style.display = "none"; // ссылка пропала
-a.style.display = "inline"; // ссылка появилась
-
-console.log(a.getAttribute("data-id")); // 1
-console.log(a.dataset.id); // получение data-атрибута через dataset
+const list2 = document.getElementsByTagName("li");
+console.log(list2); // HTMLCollection(17)
+for (let el of list2) {
+  el.style.textTransform = "uppercase";
+}
