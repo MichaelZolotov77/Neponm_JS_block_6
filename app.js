@@ -1,27 +1,15 @@
-const title = document.querySelector(".a_cat");
-console.log(title);
+const btn = document.getElementById("toggle-btn");
+const div = document.querySelector(".element");
 
-function fn1() {
-  console.log("hover!");
+function toggleVisibility() {
+  // работает через условие
+  // if (div.style.display === "none") {
+  //   div.style.display = "block";
+  // } else {
+  //   div.style.display = "none";
+  // }
+  //работает через включение-выключение класса
+  div.classList.toggle("hide");
 }
 
-function fn2() {
-  console.log("event!");
-}
-
-title.onmouseenter = fn1; // событие наведения мыши - hover, с приставкой on
-
-title.addEventListener("click", fn2); // при клике отрабатывает событие
-
-title.onmouseenter = null; // снятие обработчика события
-
-title.removeEventListener("click", fn2); // cнятие обработчика
-// Лучше будет для EventListener задать функцию извне, так как при
-// removeEventListener функция, написанная внутри, продолжит работу
-
-title.addEventListener("click", function () {
-  console.log("Event!");
-});
-title.removeEventListener("click", function () {
-  console.log("Event!"); // это две разные функции
-});
+btn.addEventListener("click", toggleVisibility);

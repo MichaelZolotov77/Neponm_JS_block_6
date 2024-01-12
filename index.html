@@ -5,41 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DOM API</title>
+    <style>
+      button {
+        padding: 0.5rem 0.8 rem;
+        font-size: 1.2rem;
+      }
+      .element {
+        width: 100%;
+        font-size: 1.2rem;
+        padding: 50px 0;
+        text-align: center;
+        background-color: lightblue;
+        margin-top: 20px;
+      }
+      .hide {
+        display: none;
+      }
+    </style>
   </head>
 
   <body>
-    <div class="page-wrapper category-api document-page">
-      <div class="top-banner fallback">
-        <section class="place top container">
-          <p class="fallback-copy">
-            Get real-time assistance with your coding queries. Try
-            <a href="/en-US/plus/ai-hlp">AI Help</a> now!
-          </p>
-          <p class="fallback-cop">
-            Get real-time assistance withf your coding queries. Try
-            <a href="/en-US/plus/ai-help">AI Help</a> now!
-          </p>
-          <p class="fallback-co">
-            Get re-time assistance with your coding queries. Try
-            <a href="/en-US/plus/ai-hel">AI Help</a> now!
-          </p>
-        </section>
-      </div>
-      <div class="container">
-        <div class="notecard localized-content-note neutral">
-          <p>
-            <a
-              href="/en-US/docs/MDN/Community/Contributing/Translated_content#active_locales"
-              >Эта страница была переведена с английского языка силами
-              сообщества.</a
-            >
-          </p>
-        </div>
-        <a class="a_cat" href="#наиболее_распространённые_категории"
-          >Наиболее распространённые категории</a
-        >
-      </div>
-    </div>
+    <button id="toggle-btn">Toggle visibility</button>
+    <div class="element">This is my DIV element</div>
     <script src="app.js"></script>
   </body>
 </html>
