@@ -1,15 +1,8 @@
-const btn = document.getElementById("toggle-btn");
-const div = document.querySelector(".element");
+let accordions = document.querySelectorAll(".accordion");
 
-function toggleVisibility() {
-  // работает через условие
-  // if (div.style.display === "none") {
-  //   div.style.display = "block";
-  // } else {
-  //   div.style.display = "none";
-  // }
-  //работает через включение-выключение класса
-  div.classList.toggle("hide");
+function toggle() {
+  console.log(this);
+  this.nextElementSibling.classList.toggle("show");
 }
 
-btn.addEventListener("click", toggleVisibility);
+accordions.forEach((accordion) => accordion.addEventListener("click", toggle));

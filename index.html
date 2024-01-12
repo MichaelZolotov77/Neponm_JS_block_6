@@ -4,29 +4,55 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DOM API</title>
+    <title>Accordion</title>
     <style>
-      button {
-        padding: 0.5rem 0.8 rem;
-        font-size: 1.2rem;
-      }
-      .element {
+      /* Style the buttons that are used to open and close the accordion panel */
+      .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
         width: 100%;
-        font-size: 1.2rem;
-        padding: 50px 0;
-        text-align: center;
-        background-color: lightblue;
-        margin-top: 20px;
+        text-align: left;
+        border: none;
+        outline: none;
+        transition: 0.4s;
       }
-      .hide {
+
+      /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+      .active,
+      .accordion:hover {
+        background-color: #ccc;
+      }
+
+      /* Style the accordion panel. Note: hidden by default */
+      .panel {
+        padding: 0 18px;
+        background-color: white;
         display: none;
+        overflow: hidden;
+      }
+      .panel.show {
+        display: block;
       }
     </style>
   </head>
 
   <body>
-    <button id="toggle-btn">Toggle visibility</button>
-    <div class="element">This is my DIV element</div>
+    <button class="accordion">Section 1</button>
+    <div class="panel">
+      <p>Lorem ipsum...</p>
+    </div>
+
+    <button class="accordion">Section 2</button>
+    <div class="panel">
+      <p>Lorem ipsum...</p>
+    </div>
+
+    <button class="accordion">Section 3</button>
+    <div class="panel">
+      <p>Lorem ipsum...</p>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>
