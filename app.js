@@ -1,8 +1,15 @@
-let accordions = document.querySelectorAll(".accordion");
+const btn = document.querySelector("button");
+const input = document.querySelector("input");
 
-function toggle() {
-  console.log(this);
-  this.nextElementSibling.classList.toggle("show");
+// btn.addEventListener("click", handleEvent);
+input.addEventListener("keypress", handleEvent);
+
+function handleEvent(event) {
+  console.log(event);
+  console.dir(event.target); // элемент, на котором произошло событие
+
+  if (event.key === "Enter") {
+    //если нажмем на enter, переместим фокус на следующего соседа
+    event.target.nextElementSibling.focus();
+  }
 }
-
-accordions.forEach((accordion) => accordion.addEventListener("click", toggle));
