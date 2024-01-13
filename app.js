@@ -1,8 +1,9 @@
 const btn = document.querySelector("button");
-const input = document.querySelector("input");
+const inputs = document.querySelectorAll("input");
 
+inputs.forEach((input) => input.addEventListener("keypress", handleEvent));
 // btn.addEventListener("click", handleEvent);
-input.addEventListener("keypress", handleEvent);
+// input.addEventListener("keypress", handleEvent);
 
 function handleEvent(event) {
   console.log(event);
