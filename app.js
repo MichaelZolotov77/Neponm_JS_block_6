@@ -1,12 +1,31 @@
+const list = document.getElementById("todos");
 document.querySelector("button").addEventListener("click", handleClick);
-document.querySelector("section").addEventListener("click", handleClick);
-document.querySelector("div").addEventListener("click", handleClick);
 
-// если кликнуть кнопку, событие произойдет не только на кнопке
-// но и на div и на section
-function handleClick(event) {
-  // event.stopPropagation(); // прекратить всплытие
-  console.log(event);
-  console.log(event.target);
-  console.log(this); // равно event.currentTarget
+function handleClick() {
+  console.log(this);
+  const newTodo = this.previousElementSibling.value.trim();
+  console.log(newTodo);
+
+  if (newTodo) {
+    //add todo
+    createTodo(newTodo);
+    this.previousElementSibling.value = "";
+  } else {
+    alert("Input field is empty");
+  }
+}
+
+function createTodo(text) {
+  const li = document.createElement("li");
+  li.innerText = text;
+  li.className = "todo-item";
+  li.addEventListener("click", removeTodo);
+
+  list.append(li); // добавить элемент к другому элементу
+}
+
+function removeTodo() {
+  console.log(this);
+  this.removeEventListener("click", removeTodo); // желательно удалит листенер
+  this.remove();
 }
