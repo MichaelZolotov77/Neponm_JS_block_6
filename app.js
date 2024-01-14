@@ -1,31 +1,20 @@
-const list = document.getElementById("todos");
-document.querySelector("button").addEventListener("click", handleClick);
+const block1 = document.querySelector("#block");
 
-function handleClick() {
-  console.log(this);
-  const newTodo = this.previousElementSibling.value.trim();
-  console.log(newTodo);
+const block2 = block1.querySelector("#too"); // можно искать во вложенных элементах
 
-  if (newTodo) {
-    //add todo
-    createTodo(newTodo);
-    this.previousElementSibling.value = "";
-  } else {
-    alert("Input field is empty");
-  }
-}
+console.log(block2);
 
-function createTodo(text) {
-  const li = document.createElement("li");
-  li.innerText = text;
-  li.className = "todo-item";
-  li.addEventListener("click", removeTodo);
+console.log(block2.getBoundingClientRect()); // получить размер и координаты
 
-  list.append(li); // добавить элемент к другому элементу
-}
+const x = 1;
 
-function removeTodo() {
-  console.log(this);
-  this.removeEventListener("click", removeTodo); // желательно удалит листенер
-  this.remove();
-}
+// вставить блок кода в определенное место относительно исходного
+block2.insertAdjacentHTML(
+  "afterend",
+  `
+  <h2 class="subtitle">Text</h2>
+  <p>${x}</p>
+`
+);
+
+console.log(block2.closest("#block")); // выдает ближайший родительский элемент или сам элемент

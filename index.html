@@ -11,21 +11,29 @@
         flex-direction: column;
         align-items: center;
       }
-      ul {
-        border: 2px solid rgb(224, 222, 222);
-        width: 300px;
-        min-height: 50px;
+
+      div {
+        text-align: center;
+        padding: 1rem;
+      }
+      #too {
+        max-width: 400px;
+        margin: auto;
+        border: 1px solid black;
       }
     </style>
   </head>
 
   <body>
     <h1>DOM API</h1>
-    <div>
-      <input type="text" placeholder="todo" />
-      <button>Add Task</button>
+
+    <div id="block">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <div>
+        <div id="too">Block 2</div>
+      </div>
     </div>
-    <ul id="todos"></ul>
 
     <script src="app.js"></script>
   </body>
