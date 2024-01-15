@@ -1,20 +1,42 @@
-const block1 = document.querySelector("#block");
+const btn = document.getElementById("myBtn");
+const modal = document.getElementById("myModal");
 
-const block2 = block1.querySelector("#too"); // можно искать во вложенных элементах
+btn.addEventListener("click", openModal);
 
-console.log(block2);
+function openModal() {
+  modal.classList.add("open");
+  attachModalEvents();
+}
 
-console.log(block2.getBoundingClientRect()); // получить размер и координаты
+function attachModalEvents() {
+  modal.querySelector(".close").addEventListener("click", closeModal);
+  document.addEventListener("keydown", handleEscape);
+  modal.addEventListener("click", handleOutside);
+}
 
-const x = 1;
+function handleEscape(event) {
+  console.log(event.key);
+  if (event.key === "Escape") {
+    closeModal();
+  }
+}
 
-// вставить блок кода в определенное место относительно исходного
-block2.insertAdjacentHTML(
-  "afterend",
-  `
-  <h2 class="subtitle">Text</h2>
-  <p>${x}</p>
-`
-);
+function handleOutside(event) {
+  console.log(event.target);
+  const isClickOutside = !event.target.closest(".modal-content");
+  console.log(isClickOutside);
+  if (isClickOutside) {
+    closeModal();
+  }
+}
 
-console.log(block2.closest("#block")); // выдает ближайший родительский элемент или сам элемент
+function closeModal() {
+  modal.classList.remove("open");
+  detachModalEvents();
+}
+
+function detachModalEvents() {
+  modal.querySelector(".close").removeEventListener("click", closeModal);
+  document.removeEventListener("keydown", handleEscape);
+  modal.removeEventListener("click", handleOutside);
+}
