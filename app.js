@@ -1,42 +1,52 @@
-const btn = document.getElementById("myBtn");
-const modal = document.getElementById("myModal");
+const list = document.getElementById("todos");
+document.querySelector("button").addEventListener("click", handleClick);
+// событие загрузки страницы
+document.addEventListener("DOMContentLoaded", loadTodos);
 
-btn.addEventListener("click", openModal);
+function handleClick() {
+  console.log(this);
+  const newTodo = this.previousElementSibling.value.trim();
+  console.log(newTodo);
 
-function openModal() {
-  modal.classList.add("open");
-  attachModalEvents();
-}
-
-function attachModalEvents() {
-  modal.querySelector(".close").addEventListener("click", closeModal);
-  document.addEventListener("keydown", handleEscape);
-  modal.addEventListener("click", handleOutside);
-}
-
-function handleEscape(event) {
-  console.log(event.key);
-  if (event.key === "Escape") {
-    closeModal();
+  if (newTodo) {
+    //add todo
+    createTodo(newTodo);
+    saveToStorage(newTodo);
+    this.previousElementSibling.value = "";
+  } else {
+    alert("Input field is empty");
   }
 }
 
-function handleOutside(event) {
-  console.log(event.target);
-  const isClickOutside = !event.target.closest(".modal-content");
-  console.log(isClickOutside);
-  if (isClickOutside) {
-    closeModal();
+// сохранить информацию в браузере
+function saveToStorage(todo) {
+  const todos = JSON.parse(localStorage.getItem("tasks")) || [];
+  localStorage.setItem("tasks", JSON.stringify([...todos, todo]));
+}
+
+function loadTodos() {
+  const todos = JSON.parse(localStorage.getItem("tasks"));
+  if (todos) {
+    todos.forEach((todo) => createTodo(todo));
   }
 }
 
-function closeModal() {
-  modal.classList.remove("open");
-  detachModalEvents();
+function createTodo(text) {
+  const li = document.createElement("li");
+  li.innerText = text;
+  li.className = "todo-item";
+  li.addEventListener("click", removeTodo);
+
+  list.append(li); // добавить элемент к другому элементу
 }
 
-function detachModalEvents() {
-  modal.querySelector(".close").removeEventListener("click", closeModal);
-  document.removeEventListener("keydown", handleEscape);
-  modal.removeEventListener("click", handleOutside);
+function removeTodo() {
+  console.log(this);
+  this.removeEventListener("click", removeTodo); // желательно удалит листенер
+  this.remove();
 }
+
+// хранилище находится во вкладке "Приложение"("Application")
+// localStorage.setItem("todos", "123"); // запись в локальное хранилище браузера
+// console.log(localStorage.getItem("todos")); // чтение значения по ключу, если укажем несуществующий ключ, получим null
+// localStorage.clear(); // очистить весь localStorage
