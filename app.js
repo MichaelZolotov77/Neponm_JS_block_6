@@ -1,6 +1,17 @@
-let history = history.back(); // откатиться по истории назад
-history = history.forward(); // пройти по истории вперед
+document.getElementById("myBtn").addEventListener("click", showSpoiler);
+const spoiler = document.getElementById("spoiler");
 
-let search = location.search(); // здесь хранятся гет-запросы после знака вопроса
-search = location.search.split("&"); // получить массив из запросов
-search = location.replace("https://wikipedia.org"); // программно перейти на другую страницу
+function showSpoiler() {
+  spoiler.classList.toggle("closed");
+  addEventListener("keydown", handleEvent);
+  if (spoiler.classList.contains("closed")) {
+    removeEventListener("keydown", handleEvent);
+  }
+}
+
+function handleEvent(event) {
+  if (event.key === "Escape") {
+    spoiler.classList.toggle("closed");
+    removeEventListener("keydown", handleEvent);
+  }
+}
