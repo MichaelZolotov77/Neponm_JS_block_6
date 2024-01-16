@@ -1,17 +1,26 @@
-document.getElementById("myBtn").addEventListener("click", showSpoiler);
-const spoiler = document.getElementById("spoiler");
+document.getElementById("myBtn").addEventListener("click", toggleSpoiler);
 
-function showSpoiler() {
+function toggleSpoiler(event) {
+  event.preventDefault();
+  const spoiler = document.getElementById("spoiler");
   spoiler.classList.toggle("closed");
-  addEventListener("keydown", handleEvent);
   if (spoiler.classList.contains("closed")) {
-    removeEventListener("keydown", handleEvent);
+    detachSpoilerEvents();
+  } else {
+    attachSpoilerEvents();
   }
 }
 
-function handleEvent(event) {
-  if (event.key === "Escape") {
-    spoiler.classList.toggle("closed");
-    removeEventListener("keydown", handleEvent);
-  }
+function attachSpoilerEvents() {
+  document.addEventListener("keydown", handleEscape);
+}
+
+function detachSpoilerEvents() {
+  document.removeEventListener("keydown", handleEscape);
+}
+
+function handleEscape(event) {
+  console.log(event.key);
+
+  if (event.key === "Escape") toggleSpoiler();
 }
