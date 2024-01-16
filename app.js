@@ -1,31 +1,29 @@
 const list = document.getElementById("todos");
 document.querySelector("button").addEventListener("click", handleClick);
-// событие загрузки страницы
 document.addEventListener("DOMContentLoaded", loadTodos);
 
 function handleClick() {
-  console.log(this);
   const newTodo = this.previousElementSibling.value.trim();
-  console.log(newTodo);
 
   if (newTodo) {
-    //add todo
+    // add todo
     createTodo(newTodo);
     saveToStorage(newTodo);
     this.previousElementSibling.value = "";
   } else {
-    alert("Input field is empty");
+    alert("input field is empty ");
   }
 }
 
-// сохранить информацию в браузере
 function saveToStorage(todo) {
   const todos = JSON.parse(localStorage.getItem("tasks")) || [];
+
   localStorage.setItem("tasks", JSON.stringify([...todos, todo]));
 }
 
 function loadTodos() {
   const todos = JSON.parse(localStorage.getItem("tasks"));
+
   if (todos) {
     todos.forEach((todo) => createTodo(todo));
   }
@@ -37,16 +35,21 @@ function createTodo(text) {
   li.className = "todo-item";
   li.addEventListener("click", removeTodo);
 
-  list.append(li); // добавить элемент к другому элементу
+  list.appendChild(li);
 }
 
-function removeTodo() {
-  console.log(this);
-  this.removeEventListener("click", removeTodo); // желательно удалит листенер
+function removeTodo(e) {
+  console.dir(this);
+  console.dir(e);
+  this.removeEventListener("click", removeTodo);
   this.remove();
+  removeToStorage();
 }
 
-// хранилище находится во вкладке "Приложение"("Application")
-// localStorage.setItem("todos", "123"); // запись в локальное хранилище браузера
-// console.log(localStorage.getItem("todos")); // чтение значения по ключу, если укажем несуществующий ключ, получим null
-// localStorage.clear(); // очистить весь localStorage
+function removeToStorage() {
+  let arr = [];
+  for (let todo of list.children) {
+    arr = [...arr, todo.innerText];
+  }
+  localStorage.setItem("tasks", JSON.stringify(arr));
+}
